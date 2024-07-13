@@ -15,7 +15,7 @@ struct GalleryView: View {
     @State var layout : [GridItem] = Array(repeating: GridItem(), count: 3)
     let movies: [MovieModel] = decode(file: "movies.json")
     @State var selectedImage = "men-in-black"
-    @State var buttonImage = "square.grid.3x2"
+    @State var buttonImage = "rectangle.grid.1x2"
     
     
     //MARK: - Function

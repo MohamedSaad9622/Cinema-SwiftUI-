@@ -10,7 +10,7 @@ import SwiftUI
 struct BrowserView: View {
     
     //Properties
-    let movies: [MovieModel] = decode(file: "movies.json")
+    @State var movies: [MovieModel] = decode(file: "movies.json")
     //Body
     var body: some View {
         
@@ -27,6 +27,13 @@ struct BrowserView: View {
                     }
 
                 }
+                .onDelete(perform: { indexSet in
+                    movies.remove(atOffsets: indexSet)
+                })
+                .onMove(perform: { indices, newOffset in
+                    movies.swapAt(indices.count, newOffset)
+                })
+                
                 
                 HStack {
                     Spacer()
@@ -45,6 +52,11 @@ struct BrowserView: View {
                 }
             }//List
             .navigationTitle("Cinema")
+            .toolbar(content: {
+                ToolbarItem(placement: .topBarTrailing) {
+                    EditButton()
+                }
+            })
 
         }
         
